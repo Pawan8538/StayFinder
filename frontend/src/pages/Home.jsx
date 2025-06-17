@@ -11,11 +11,15 @@ const PropertyCard = ({ property }) => {
     >
       <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl overflow-hidden transition">
         <div className="relative h-52">
-          <img
-            src={getImageUrl(property.images[0])}
-            alt={property.title}
-            className="w-full h-full object-cover"
-          />
+        <img
+  src={getImageUrl(property.images?.[0])}
+  alt={property.title || "Listing Image"}
+  className="w-full h-full object-cover"
+  onError={(e) => {
+    e.target.onerror = null; // prevent infinite loop
+    e.target.src = "/default.jpg"; // fallback image path (public/default.jpg)
+  }}
+/>
         </div>
         <div className="p-4">
           <div className="flex justify-between items-start">
