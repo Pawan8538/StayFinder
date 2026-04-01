@@ -36,8 +36,10 @@ const HostDashboard = () => {
         prev.map((b) => (b._id === bookingId ? { ...b, status } : b)),
       );
     } catch (err) {
-      alert("Failed to update status");
-      console.error(err.message);
+      alert(
+        err.response?.data?.message || 
+        "We couldn't update the booking status. Please try again."
+      );
     }
   };
 

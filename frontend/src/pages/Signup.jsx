@@ -28,7 +28,7 @@ const Signup = () => {
     setError("");
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
+      setError("Passwords do not match. Please make sure both password fields are identical");
       return;
     }
 
@@ -43,7 +43,7 @@ const Signup = () => {
         setError(result.error);
       }
     } catch (err) {
-      setError("An error occurred during signup. Please try again.");
+      setError("Something went wrong while creating your account. Please check your internet connection and try again");
     } finally {
       setLoading(false);
     }

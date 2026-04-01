@@ -33,7 +33,7 @@ const Login = () => {
         setError(result.error);
       }
     } catch (err) {
-      setError("An error occurred during login. Please try again.");
+      setError("Something went wrong while signing you in. Please check your internet connection and try again");
     } finally {
       setLoading(false);
     }

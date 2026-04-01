@@ -37,9 +37,13 @@ const ListingDetail = () => {
         const response = await API.get(`/listings/${id}`);
         setListing(response.data);
       } catch (err) {
-        setError(
-          err.response?.data?.message || "Failed to fetch listing details",
-        );
+        if (err.response?.status === 401) {
+          setError("You need to be logged in to view property details. Please sign in or create an account to continue.");
+        } else {
+          setError(
+            err.response?.data?.message || "We couldn't load the details for this listing right now. Please try again.",
+          );
+        }
       } finally {
         setLoading(false);
       }
@@ -69,11 +73,11 @@ const ListingDetail = () => {
       if (response.data.success) {
         navigate("/my-bookings");
       } else {
-        throw new Error(response.data.message || "Failed to create booking");
+        throw new Error(response.data.message || "Something went wrong while securing your booking.");
       }
     } catch (err) {
       setBookingError(
-        err.response?.data?.message || "Failed to create booking",
+        err.response?.data?.message || "We couldn't process your booking. Please try again later.",
       );
     } finally {
       setBookingLoading(false);

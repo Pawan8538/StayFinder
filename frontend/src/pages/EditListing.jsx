@@ -55,7 +55,7 @@ const EditListing = () => {
         });
         setLoading(false);
       } catch (err) {
-        setError("Failed to fetch listing details");
+        setError("We couldn't retrieve the details for this listing. Please check your connection and try again.");
         setLoading(false);
       }
     };
@@ -145,7 +145,7 @@ const EditListing = () => {
 
       navigate(`/listings/${id}`);
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to update listing");
+      setError(err.response?.data?.message || "We couldn't update your listing right now. Please try again.");
     } finally {
       setSaving(false);
     }

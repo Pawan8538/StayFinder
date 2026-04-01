@@ -23,13 +23,13 @@ export const AuthProvider = ({ children }) => {
       API
         .get("/auth/me")
         .then((response) => {
-          setUser(response.data);
+          setUser(response.data.user || response.data);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
           if (error.response?.status === 401) {
             localStorage.removeItem("token");
-            delete axios.defaults.headers.common["Authorization"];
+            delete API.defaults.headers.common["Authorization"];
           }
         })
         .finally(() => {
@@ -51,7 +51,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return {
         success: false,
-        message: error.response?.data?.message || "Login failed",
+        error:
+          error.response?.data?.message ||
+          "Unable to log in right now. Please check your connection and try again",
       };
     }
   };
@@ -67,7 +69,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return {
         success: false,
-        message: error.response?.data?.message || "Signup failed",
+        error:
+          error.response?.data?.message ||
+          "Unable to create your account right now. Please check your connection and try again",
       };
     }
   };

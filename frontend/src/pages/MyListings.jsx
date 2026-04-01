@@ -20,7 +20,7 @@ const MyListings = () => {
       setListings(response.data);
     } catch (err) {
       console.error("Error fetching listings:", err);
-      setError(err.response?.data?.message || "Failed to fetch listings");
+      setError(err.response?.data?.message || "We had trouble retrieving your listings. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -36,7 +36,7 @@ const MyListings = () => {
       setListings(listings.filter((listing) => listing._id !== id));
     } catch (err) {
       console.error("Error deleting listing:", err);
-      setError(err.response?.data?.message || "Failed to delete listing");
+      setError(err.response?.data?.message || "We couldn't delete the listing at this time. Please try again.");
     }
   };
 

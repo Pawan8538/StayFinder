@@ -24,7 +24,7 @@ const MyBookings = () => {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching bookings:", err);
-        setError(err.response?.data?.message || "Failed to fetch bookings");
+        setError(err.response?.data?.message || "We could not load your bookings. Please check your connection and try again.");
         setLoading(false);
       }
     };
@@ -60,7 +60,7 @@ const MyBookings = () => {
         console.error("Error cancelling booking:", err);
         alert(
           err.response?.data?.message ||
-            "Failed to cancel booking. Please try again.",
+            "We were unable to cancel the booking. Please check your connection and try again."
         );
       }
     }

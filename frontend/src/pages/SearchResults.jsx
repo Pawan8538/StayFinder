@@ -19,7 +19,10 @@ const SearchResults = () => {
         setResults(response.data.listings);
       } catch (err) {
         console.error(err);
-        setError("Failed to fetch search results");
+        setError(
+          err.response?.data?.message || 
+          "We couldn't load the search results. Please check your connection and try again."
+        );
       } finally {
         setLoading(false);
       }

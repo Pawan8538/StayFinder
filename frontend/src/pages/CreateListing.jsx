@@ -185,7 +185,7 @@ const LocationPicker = ({ setFormData }) => {
         navigate("/my-listings");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to create listing");
+      setError(err.response?.data?.message || "Something went wrong while creating your listing. Please try again.");
     } finally {
       setLoading(false);
     }
